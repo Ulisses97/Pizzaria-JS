@@ -13,6 +13,22 @@ pizzaJson.map( (item, index)=>{
   pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}`;
   pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
 
+  pizzaItem.querySelector('a').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Pegar um atribulo e modificar pelo CSS
+
+    // Abrindo o Modal
+    querySelector('.pizzaWindowArea').style.opacity = '0';
+    querySelector('.pizzaWindowArea').style.display = 'flex';
+    setTimeout( () => {
+      querySelector('.pizzaWindowArea').style.opacity = '1';
+    }, 200);
+    
+
+
+  })
+
   // Preencher as informações em pizzaItem -> append pega o conteudo e add
   querySelector('.pizza-area').append(pizzaItem);
 
