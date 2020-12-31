@@ -134,9 +134,45 @@ function updateCart(){
   if(cart.length > 0){
     document.querySelector('aside').classList.add('show');
 
+    // Limpar a lista de carrinho para não duplicar.
+    document.querySelector('.cart').innerHTML = '';
     for(let i in cart){
+      // Pegar o item
       let pizzaItem = pizzaJson.find((item) => item.id == cart[i].id);
-      console.log(pizzaItem)
+
+      // Pegar o cart item
+      let cartItem = document.querySelector('.models .cart--item').cloneNode(true);
+
+      // Colocar as info (nome, Img, Quantidade...)
+
+      // -Resolvendo tamanho da pizza juntamente com seu nome
+      console.log(cart[i])
+      let pizzaSizeName;
+      switch(cart[i].size){
+        case 0:
+          pizzaSizeName = 'Pequena';
+          break;
+        case 1:
+            pizzaSizeName = 'Média';
+            break;   
+        case 2:
+            pizzaSizeName = 'Grande';
+            break;                   
+      }
+      // -End
+
+
+      let pizzaName = `${pizzaItem.name} (${pizzaSizeName})` 
+
+      cartItem.querySelector('img').src = pizzaItem.img
+      cartItem.querySelector('.cart--item-nome').innerHTML = pizzaName;
+      cartItem.querySelector('.cart--item--qt').innerHTML = cart[i].qt;
+
+
+      // Exibir na tela
+      document.querySelector('.cart').append(cartItem);
+
+
     }
 
   }else{
