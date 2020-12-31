@@ -124,7 +124,22 @@ document.querySelector('.pizzaInfo--addButton').addEventListener('click', (e) =>
     })
   }
   
-  console.log(cart)
-  closeModal()
+  //console.log(cart)
+  updateCart();
+  closeModal();
 
 })
+
+function updateCart(){
+  if(cart.length > 0){
+    document.querySelector('aside').classList.add('show');
+
+    for(let i in cart){
+      let pizzaItem = pizzaJson.find((item) => item.id == cart[i].id);
+      console.log(pizzaItem)
+    }
+
+  }else{
+    document.querySelector('aside').classList.remove('show');
+  }
+}
