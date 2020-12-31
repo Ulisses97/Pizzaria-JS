@@ -1,4 +1,7 @@
+let cart = [];
 let modalQt = 1;
+let modalKey = 0;
+
 
 const querySelector = (e) => {
   return document.querySelector(e);
@@ -13,16 +16,16 @@ pizzaJson.map( (item, index)=>{
   pizzaItem.setAttribute('data-key', index);
 
   pizzaItem.querySelector('.pizza-item--img img').src = item.img
-
   pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
   pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}`;
   pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
 
   // Evento de click para Abrir Modar
   pizzaItem.querySelector('a').addEventListener('click', (e) => {
-    modalQt = 1;
     e.preventDefault();
     let key = e.target.closest('.pizza-item').getAttribute('data-key');
+    modalQt = 1;
+    modalKey = key;
 
     // Descrição no modal
     querySelector('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
@@ -88,3 +91,40 @@ document.querySelectorAll('.pizzaInfo--size').forEach( (size, sizeIndex) => {
    size.classList.add('selected')
   })
 });
+
+// -- Adicionar ao carrinho
+document.querySelector('.pizzaInfo--addButton').addEventListener('click', (e) =>{
+
+  // Qual a pizza?
+  console.log("pizza: "+ modalKey);
+
+  // Qual o tamanho?
+  let size = parseInt(document.querySelector('.pizzaInfo--size.selected').getAttribute('data-key'));
+  console.log("tamanho: "+ size);
+
+  // Quantas pizzas adicionadas?
+  console.log("quantidade: "+ modalQt);
+
+  // Adicionar ao carrinho
+
+  let identifier = pizzaJson[modalKey].id+'@'+size;
+
+  let key = cart.findIndex( (item) => {
+    return item.identifier == identifier;
+  });
+
+  if(key > -1){
+    cart[key].qt += modalQt;
+  }else{
+    cart.push({
+      identifier,
+      id:pizzaJson[modalKey].id,
+      size:size,
+      qt:modalQt
+    })
+  }
+  
+  console.log(cart)
+  closeModal()
+
+})
