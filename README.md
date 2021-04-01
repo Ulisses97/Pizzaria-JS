@@ -1,5 +1,5 @@
 <div align="center" >
-  <h1 align="center" > 🍕 Previsão do Tempo com React JS - V1 </h1> 
+  <h1 align="center" > 🍕 Pizzaria Online JS - V1 </h1> 
   
   <p>Print Aplicação</p>
  <img src="./images/pizzariaPrint1.png"/>
