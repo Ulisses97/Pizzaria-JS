@@ -17,7 +17,7 @@
 
 <h1>🚀 Tecnologias</h1>
 </br>
-<p>Esse projeto é um estudo de Front End usando as seguintes tecnologias:</p>
+<p>Esse projeto é um estudo de Front End do canal Bonieky Lacerda usando as seguintes tecnologias:</p>
 <span>
 - ✔️ Javascript </br>
 - ✔️ JSON </br>
